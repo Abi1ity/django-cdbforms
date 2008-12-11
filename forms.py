@@ -5,8 +5,11 @@ from django.utils.translation import ugettext
 from models import *
 
 class CDBForm(forms.Form):
-    def __init__(self, template, *args, **kwargs):
-	self.template = Template.objects.get(tag=template)
+    def __init__(self, template=None, tag=None, *args, **kwargs):
+	if template:
+	    self.template = template
+	elif tag:
+	    self.template = Template.objects.get(tag=tag)
 	fields = self.template.fields()
 	for field in fields:
 	    if field.type == "B":
