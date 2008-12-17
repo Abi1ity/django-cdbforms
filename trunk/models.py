@@ -46,6 +46,9 @@ class Record(models.Model):
     
     def __unicode__(self):
 	return u'%s @ %s' % (self.template, self.dt)
+	
+    def data(self):
+	return RecordData.objects.filter(record=self)
 
 class RecordData(models.Model):
     record = models.ForeignKey(Record)

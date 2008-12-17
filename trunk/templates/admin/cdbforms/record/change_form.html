@@ -1,0 +1,8 @@
+{% extends "admin/change_form.html" %}
+{% block after_field_sets %}
+<fieldset class="module aligned">
+{% for data in adminform.form.instance.data %}
+<div class="form-row"><strong>{{ data.field.title }}:</strong> {{ data.value }}</div>
+{% endfor %}
+</fieldset>
+{% endblock %}

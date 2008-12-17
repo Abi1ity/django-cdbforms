@@ -14,11 +14,7 @@ class FieldParameterAdmin(admin.ModelAdmin):
 class RecordAdmin(admin.ModelAdmin):
     pass
     
-class RecordDataAdmin(admin.ModelAdmin):
-    pass
-    
 admin.site.register(Template, TemplateAdmin)
 admin.site.register(TemplateField, TemplateFieldAdmin)
 admin.site.register(FieldParameter, FieldParameterAdmin)
 admin.site.register(Record, RecordAdmin)
-admin.site.register(RecordData, RecordDataAdmin)
