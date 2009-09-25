@@ -2,8 +2,11 @@ from django.contrib import admin
 
 from models import *
 
+class TemplateFieldInline(admin.TabularInline):
+    model = TemplateField
+
 class TemplateAdmin(admin.ModelAdmin):
-    pass
+    inlines = [TemplateFieldInline]
     
 class TemplateFieldAdmin(admin.ModelAdmin):
     pass
