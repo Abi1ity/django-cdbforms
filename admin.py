@@ -8,8 +8,11 @@ class TemplateFieldInline(admin.TabularInline):
 class TemplateAdmin(admin.ModelAdmin):
     inlines = [TemplateFieldInline]
     
+class FieldParameterInline(admin.TabularInline):
+    model = FieldParameter
+
 class TemplateFieldAdmin(admin.ModelAdmin):
-    pass
+    inlines = [FieldParameterInline]
     
 class FieldParameterAdmin(admin.ModelAdmin):
     pass
