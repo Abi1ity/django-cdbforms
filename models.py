@@ -1,7 +1,7 @@
 from django.db import models
 
 class Template(models.Model):
-    tag = models.SlugField(max_length=16, unique=True)
+    tag = models.SlugField(max_length=100, unique=True)
     title = models.CharField(max_length=50)
     
     def fields(self):
@@ -14,8 +14,8 @@ class TemplateField(models.Model):
     FieldTypes = (('T', 'Text'), ('B', 'Bool'), ('E', 'E-mail'), 
                   ('U', 'URL'), ('C', 'Choices'), ('M', 'Multichoice'),)
     template = models.ForeignKey(Template)
-    tag = models.SlugField(max_length=32)
-    title = models.CharField(max_length=50)
+    tag = models.SlugField(max_length=100)
+    title = models.CharField(max_length=255)
     type = models.CharField(max_length=1, choices=FieldTypes)
     tab = models.IntegerField(default=0)
     required = models.BooleanField(default=True)
@@ -31,7 +31,7 @@ class TemplateField(models.Model):
 	
 class FieldParameter(models.Model):
     field = models.ForeignKey(TemplateField)
-    tag = models.SlugField(max_length=32)
+    tag = models.SlugField(max_length=100)
     value = models.CharField(max_length=255)
     tab = models.IntegerField(default=0)
 
@@ -54,7 +54,7 @@ class Record(models.Model):
 class RecordData(models.Model):
     record = models.ForeignKey(Record)
     field = models.ForeignKey(TemplateField)
-    value = models.CharField(max_length=255)
+    value = models.TextField()
     
     def __unicode__(self):
 	return u'%s %s' % (self.record, self.field)
