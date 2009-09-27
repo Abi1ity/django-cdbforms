@@ -49,7 +49,7 @@ class Record(models.Model):
 	return u'%s @ %s' % (self.template, self.dt)
 	
     def data(self):
-	return RecordData.objects.filter(record=self)
+	return RecordData.objects.filter(record=self).order_by('field__tab')
 
 class RecordData(models.Model):
     record = models.ForeignKey(Record)
