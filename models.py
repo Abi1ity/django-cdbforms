@@ -62,3 +62,7 @@ class RecordData(models.Model):
     class Meta:
 	unique_together = ("record", "field")
 
+    def decoded_value(self):
+        if self.field.type == 'M':
+            return eval(self.value)
+        return self.value

@@ -2,7 +2,10 @@
 {% block after_field_sets %}
 <fieldset class="module aligned">
 {% for data in adminform.form.instance.data %}
-<div class="form-row"><strong>{{ data.field.title }}:</strong> {{ data.value }}</div>
+<div class="form-row">
+  <strong>{{ data.field.title }}:</strong> 
+  {{ data.decoded_value }}
+</div>
 {% endfor %}
 </fieldset>
 {% endblock %}
