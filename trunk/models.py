@@ -11,7 +11,8 @@ class Template(models.Model):
 	return self.title
 
 class TemplateField(models.Model):
-    FieldTypes = (('T', 'Text'), ('B', 'Bool'), ('E', 'E-mail'), ('U', 'URL'), ('C', 'Choices'),)
+    FieldTypes = (('T', 'Text'), ('B', 'Bool'), ('E', 'E-mail'), 
+                  ('U', 'URL'), ('C', 'Choices'), ('M', 'Multichoice'),)
     template = models.ForeignKey(Template)
     tag = models.SlugField(max_length=32)
     title = models.CharField(max_length=50)

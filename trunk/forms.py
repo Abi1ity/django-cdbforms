@@ -16,12 +16,15 @@ class CDBForm(forms.Form):
 		self.base_fields[field.tag] = forms.BooleanField(label=field.title, required=field.required)
 	    elif field.type == "T":
 		self.base_fields[field.tag] = forms.CharField(label=field.title, required=field.required)
-	    elif field.type == "C":
+	    elif field.type in ["C", "M"]:
 		choices = []
 		for parameter in field.parameters():
 		    if parameter.tag == "choice":
 			choices.append((parameter.value, parameter.value))
-		self.base_fields[field.tag] = forms.ChoiceField(choices=choices, label=field.title, required=field.required)
+                if field.type == "C":
+                    self.base_fields[field.tag] = forms.ChoiceField(choices=choices, label=field.title, required=field.required)
+                else:
+                    self.base_fields[field.tag] = forms.MultipleChoiceField(choices=choices, label=field.title, required=field.required)
 	    elif field.type == "E":
 		self.base_fields[field.tag] = forms.EmailField(label=field.title, required=field.required)
 	    elif field.type == "U":
