@@ -4,7 +4,15 @@
 {% for data in adminform.form.instance.data %}
 <div class="form-row">
   <strong>{{ data.field.title }}:</strong> 
+  {% ifequal data.field.type 'M' %}
+  <ul>
+    {% for choice in data.decoded_value %}
+    <li>{{ choice }}</li>
+    {% endfor %}
+  </ul>
+  {% else %}
   {{ data.decoded_value }}
+  {% endifequal %}
 </div>
 {% endfor %}
 </fieldset>
