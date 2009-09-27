@@ -38,6 +38,6 @@ class CDBForm(forms.Form):
 	    rec.save()
 	    for k,v in data.iteritems():
 		f = TemplateField.objects.get(template=self.template, tag=k)
-		d = RecordData(record=rec, field=f, value=v)
+		d = RecordData(record=rec, field=f, value=('%s' % v))
 		d.save()
 	return data
