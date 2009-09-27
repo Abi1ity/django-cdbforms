@@ -41,11 +41,11 @@ class CDBForm(forms.Form):
 
     def save(self, commit=True):
 	data = self.cleaned_data
+        rec = Record(template=self.template, dt=datetime.now())
 	if commit:
-	    rec = Record(template=self.template, dt=datetime.now())
 	    rec.save()
 	    for k,v in data.iteritems():
 		f = TemplateField.objects.get(template=self.template, tag=k)
 		d = RecordData(record=rec, field=f, value=('%s' % v))
 		d.save()
-	return data
+	return rec
