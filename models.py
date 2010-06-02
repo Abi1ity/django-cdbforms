@@ -66,3 +66,11 @@ class RecordData(models.Model):
         if self.field.type == 'M':
             return eval(self.value)
         return self.value
+
+    def rendered_value(self):
+        if self.field.type == 'B':
+            if self.value == 'True':
+                return ugettext("Yes")
+            elif self.value == 'False':
+                return ugettext("No")
+        return self.value
