@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import ugettext
 
 class Template(models.Model):
     tag = models.SlugField(max_length=100, unique=True)
