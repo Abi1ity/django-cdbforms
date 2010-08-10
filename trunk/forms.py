@@ -15,7 +15,12 @@ class CDBForm(forms.Form):
 	    if field.type == "B":
 		self.base_fields[field.tag] = forms.BooleanField(label=field.title, required=field.required)
 	    elif field.type == "T":
-                self.base_fields[field.tag] = forms.CharField(label=field.title, required=field.required, widget=forms.TextInput(attrs={'style': 'width: 350px;'}))
+                widget = forms.TextInput(attrs={'style': 'width: 350px;'})
+		for parameter in field.parameters():
+		    if parameter.tag == "widget":
+                        if parameter.value == "textarea":
+                            widget = forms.Textarea(attrs={'style': 'width: 350px;'})
+		self.base_fields[field.tag] = forms.CharField(label=field.title, required=field.required, widget=widget)
 	    elif field.type == "C":
 		choices = [('', '-')]
 		for parameter in field.parameters():
