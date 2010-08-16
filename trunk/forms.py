@@ -41,7 +41,8 @@ class CDBForm(forms.Form):
 	    elif field.type == "E":
 		self.base_fields[field.tag] = forms.EmailField(label=field.title, required=field.required)
 	    elif field.type == "U":
-		self.base_fields[field.tag] = forms.URLField(label=field.title, required=field.required)
+                widget = forms.TextInput(attrs={'style': 'width: 350px;'})
+		self.base_fields[field.tag] = forms.URLField(label=field.title, required=field.required, widget=widget)
 	forms.Form.__init__(self, *args, **kwargs)
 
     def save(self, commit=True):

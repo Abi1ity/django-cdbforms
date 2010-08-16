@@ -7,6 +7,7 @@ class TemplateFieldInline(admin.TabularInline):
 
 class TemplateAdmin(admin.ModelAdmin):
     inlines = [TemplateFieldInline]
+    save_as = True
     
 class FieldParameterInline(admin.TabularInline):
     model = FieldParameter
